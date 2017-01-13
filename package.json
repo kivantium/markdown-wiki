@@ -1,0 +1,16 @@
+{
+  "name": "markdown-doc",
+  "description": "markdown server with KaTeX",
+  "version": "0.0.1",
+  "author": "kivantium@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:kivantium/markdown-doc.git"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "markdown-it": "^8.2.2",
+    "markdown-it-katex": "^2.0.3"
+  }
+}
