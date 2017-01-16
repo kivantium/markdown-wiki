@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "express": "^4.14.0",
+    "highlight.js": "^9.9.0",
     "markdown-it": "^8.2.2",
-    "markdown-it-katex": "^2.0.3"
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-title": "^1.0.4"
   }
 }

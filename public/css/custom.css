@@ -1,0 +1,16 @@
+@charset "UTF-8";
+body {
+  background-color: #ffffff;
+}
+.navbar {
+  background-color: #fafafa;
+}
+
+.markdown-body p {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.markdown-body ul {
+  padding-left: 2em;
+}
