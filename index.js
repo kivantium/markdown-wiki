@@ -35,6 +35,7 @@ var md = require('markdown-it')({
 });
 md.use(require('markdown-it-katex'));
 md.use(require('markdown-it-title'));
+md.use(require('markdown-it-deflist'));
 
 app.get('/', function(req, res){
     res.redirect('/index');

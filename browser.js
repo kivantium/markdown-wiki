@@ -13,6 +13,7 @@ var md = require('markdown-it')({
   }
 });
 md.use(require('markdown-it-katex'));
+md.use(require('markdown-it-deflist'));
 
 var input = document.getElementById('code'),
 	output = document.getElementById('output');
