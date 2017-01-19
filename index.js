@@ -3,13 +3,16 @@ var app = express();
 var http = require('http').Server(app);
 var fs = require('fs')
 var path = require('path');
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
 app.engine('html', function (filePath, options, callback) {
   fs.readFile(filePath, 'utf8', function (err, content) {
     if (err) return callback(err)
     var rendered = content.toString().replace('#main#', options.main)
-                                     .replace('#title#', options.title);
+                                     .replace('#title#', options.title)
+                                     .replace('#link#', options.link);
     return callback(null, rendered)
   })
 });
@@ -31,11 +34,10 @@ var md = require('markdown-it')({
   }
 });
 md.use(require('markdown-it-katex'));
-md.use(require('markdown-it-title'))
+md.use(require('markdown-it-title'));
 
 app.get('/', function(req, res){
-    var result = md.render('# Tips');
-    res.render('template', { main: result })
+    res.redirect('/index');
 });
 
 app.get('/favicon.ico', function(req, res) {
@@ -43,16 +45,32 @@ app.get('/favicon.ico', function(req, res) {
 });
 
 app.get('/:entry', function(req, res){
-    var filename = req.params.entry+'.md';
-    fs.readFile(path.join(__dirname, filename), 'utf8', function (err, data) {
+    var filename = req.params.entry;
+    fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
         if (err) {
-            res.render('template', { main: '404 Not Found' });
+            res.render('template', { title: 'Not Found', main: 'Not Found.', link: filename});
         } else {
             const env = {};
             var article = md.render(data, env);
-            res.render('template', { main: article, title: env.title });
+            res.render('template', { title: env.title, main: article, link: filename});
         }
     });
+});
+
+app.get('/edit/:entry', function(req, res){
+    var filename = req.params.entry;
+    fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
+        if (err) {
+            res.render('edit', { title: filename, main: '', link: filename});
+        } else {
+            res.render('edit', { title: filename, main: data, link: filename});
+        }
+    });
+});
+
+app.post('/save', function(req, res) {
+    var input = JSON.parse(JSON.stringify(req.body));
+    fs.writeFile(path.join(__dirname, 'md/'+input['file']+'.md'), input['data']);
 });
 
 app.use(function(req, res){

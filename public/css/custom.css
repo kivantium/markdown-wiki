@@ -14,3 +14,39 @@ body {
 .markdown-body ul {
   padding-left: 2em;
 }
+
+.CodeMirror {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  font-family: "Source Code Pro", Consolas, monaco, Meiryo, "ＭＳ ゴシック", "MS Gothic", monospace;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  font-size: 18px;
+  height: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+background-color: #eee;
+}
+#in {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: auto;
+  overflow: auto;
+}
+#out {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  left: 50%;
+  bottom: 0;
+  overflow: auto;
+  padding: 20px;
+}

@@ -9,6 +9,7 @@
     "url": "git+ssh://git@github.com:kivantium/markdown-doc.git"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "highlight.js": "^9.9.0",
     "markdown-it": "^8.2.2",
