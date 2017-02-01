@@ -61,9 +61,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res){
-    var username = 'guest';
+    var username;
+    var profile_image;
     if(req.user) {
         username = req.user.username;
+        profile_image = req.user.photos[0].value;
     }
     var filename = 'index';
     fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
@@ -72,7 +74,8 @@ app.get('/', function(req, res){
         res.render('template.ejs', { title: env.title,
                                      main: article,
                                      link: filename,
-                                     username: username});
+                                     username: username,
+                                     profile_image: profile_image});
     });
 });
 

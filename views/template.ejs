@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/index">kivantium.net</a>
+      <a class="navbar-brand" href="/index">Markdown Wiki</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -36,7 +36,8 @@
         <li><a href="https://twitter.com/kivantium">Twitter</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if(username != 'guest') { %>
+        <% if(username) { %>
+        <li><a href="https://twitter.com/<%- username %>"><%- username %><img alt="profile" height="30px" src="<%- profile_image %>"></a></li>
           <li><a id="send" href="/edit/<%- link %>">Edit</a></li>
         <% } else { %>
           <li><a href="/login/twitter">Login</a></li>
