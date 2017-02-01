@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>#title#</title>
+<title><%- title %></title>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
@@ -36,15 +36,18 @@
         <li><a href="https://twitter.com/kivantium">Twitter</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a id="send" href="/edit/#link#">Edit</a></li>
+        <% if(username != 'guest') { %>
+          <li><a id="send" href="/edit/<%- link %>">Edit</a></li>
+        <% } else { %>
+          <li><a href="/login/twitter">Login</a></li>
+        <% } %>
       </ul>
     </div>
   </div>
 </nav>
-
 <div class="container">
 <article class="markdown-body">
-#main#
+<%- main %>
 </article>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
