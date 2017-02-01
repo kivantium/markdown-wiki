@@ -61,7 +61,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res){
-    var username;
     var profile_image;
     if(req.user) {
         username = req.user.username;
@@ -74,7 +73,6 @@ app.get('/', function(req, res){
         res.render('template.ejs', { title: env.title,
                                      main: article,
                                      link: filename,
-                                     username: username,
                                      profile_image: profile_image});
     });
 });
@@ -84,9 +82,10 @@ app.get('/favicon.ico', function(req, res) {
 });
 
 app.get('/:entry', function(req, res){
-    var username = 'guest';
+    var profile_image;
     if(req.user) {
         username = req.user.username;
+        profile_image = req.user.photos[0].value;
     }
     var filename = req.params.entry;
     fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
@@ -94,30 +93,41 @@ app.get('/:entry', function(req, res){
             res.render('template.ejs', { title: 'Page Not Found', 
                                          main: 'Page Not Found.', 
                                          link: filename,
-                                         username: username});
+                                         profile_image: profile_image});
         } else {
             const env = {};
             var article = md.render(data, env);
             res.render('template.ejs', { title: env.title,
                                          main: article,
                                          link: filename,
-                                         username: username});
+                                         profile_image: profile_image});
         }
     });
 });
 
 app.get('/edit/:entry', function(req, res){
+    var profile_image;
+    if(req.user) {
+        username = req.user.username;
+        profile_image = req.user.photos[0].value;
+    }
     if(req.user && req.user.username == 'kivantium') {
         var filename = req.params.entry;
         fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
             if (err) {
-                res.render('edit', { title: filename, main: '', link: filename});
+                res.render('edit.ejs', { title: filename,
+                                         main: '', 
+                                         link: filename,
+                                         profile_image: profile_image});
             } else {
-                res.render('edit', { title: filename, main: data, link: filename});
+                res.render('edit.ejs', { title: filename,
+                                         main: data, 
+                                         link: filename,
+                                         profile_image: profile_image});
             }
         });
     } else {
-        res.redirect('/login/twitter');
+        res.redirect('/');
     }   
 });
 
