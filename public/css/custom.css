@@ -64,6 +64,16 @@
   font-size: 16px;
 }
 
+.markdown-body pre {
+  padding: 16px;
+  font-size: 95%;
+  overflow: auto;
+  line-height: 1.5;
+  background-color: #fcfcfc;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+}
+
 .katex {
   margin-left: 2px;
   margin-right: 2px;
