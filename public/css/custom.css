@@ -1,20 +1,72 @@
 @charset "UTF-8";
+
+.mdl-layout-title a {
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
+.mdl-layout__header-row .header-nav {
+  margin-left: 24px;
+}
+
+.mdl-navigation__link {
+  font-size: 16px;
+}
+.mdl-navigation__link {
+  font-size: 16px;
+}
+
 .markdown-body {
   box-sizing: border-box;
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.markdown-body h1 {
+  padding-bottom: 0.2em;
+  font-size: 2.0em;
+  line-height: 1.25;
+  border-bottom: 1px solid #aaa;
+}
+.markdown-body h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.1em;
+  line-height: 1.5;
+  border-bottom: 1px solid #ccc;
+}
+.markdown-body h3 {
+  font-size: 1.25em;
+  margin: 8px 0;
+}
+.markdown-body h4 {
+  font-size: 1em;
+  line-height: 1.2;
 }
 
 .markdown-body p {
   font-size: 16px;
-  padding-left: 1em;
-  padding-right: 1em;
+}
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-weight: bold;
 }
 
 .markdown-body ul {
-  padding-left: 2em;
+  font-size: 16px;
+}
+.markdown-body ol {
+  font-size: 16px;
+}
+
+.katex {
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #code {
