@@ -128,7 +128,7 @@ app.get('/edit/:entry', function(req, res){
         });
     } else {
         res.redirect('/');
-    }   
+    }  
 });
 
 app.get('/login/twitter',

@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>markdown-it demo</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
-  <link rel="stylesheet" href="/lib/codemirror.css">
-  <link rel="stylesheet" href="/css/custom.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/markdown-it/8.2.2/markdown-it.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-  <script src="/lib/codemirror.js"></script>
-  <script src="/addon/mode/overlay.js"></script>
-  <script src="/addon/edit/closebrackets.js"></script>
-  <script src="/addon/edit/matchbrackets.js"></script>
-  <script src="/mode/markdown/markdown.js"></script>    
-  <script src="/mode/gfm/gfm.js"></script>    
-  <!-- Ancient IE support - load shiv & kill broken highlighter--><!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script>window.hljs = null;</script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%- title %></title>
+<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="//code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+<script defer src="//code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/googlecode.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/codemirror.min.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/codemirror.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/mode/overlay.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/edit/matchbrackets.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/mode/markdown/markdown.js"></script>    
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top"> 
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>  
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/index">kivantium.net</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="/about">About</a></li>
-        <li><a href="/docs">Documents</a></li>
-        <li><a href="http://kivantium.hateblo.jp/">Blog</a></li>
-        <li><a href="https://twitter.com/kivantium">Twitter</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a id="send" href="/<%- link %>">Save</a></li>
-      </ul>
-    </div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <span class="mdl-layout-title"><a href="/">kivantium.net</a></span>
+    <nav class="mdl-navigation mdl-layout--large-screen-only header-nav">
+      <a class="mdl-navigation__link" href="/about">About</a>
+      <a class="mdl-navigation__link" href="/docs">Documents</a>
+      <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
+      <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
+    </nav>
+    <div class="mdl-layout-spacer"></div>
+    <nav class="mdl-navigation header-nav">
+      <a id="send" class="mdl-navigation__link" href="/<%- link %>">Save</a>
+    </nav>
   </div>
-</nav>
-<div class="row">
+</header>
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout__title">kivantium.net</span>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="/about">About</a>
+    <a class="mdl-navigation__link" href="/docs">Documents</a>
+    <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
+    <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
+    <% if(!profile_image) { %>
+      <a class="mdl-navigation__link" href="/login/twitter">Login</a>
+    <% } %>
+  </nav>
+</div>
+<main class="mdl-layout__content">
 <div id="in">
   <form id="form" action="/save" method="post">
     <textarea id="code"><%- main %></textarea>
   </form>
 </div>
 <div id="out" class="markdown-body"></div>
+</main>
 </div>
 <script src="/bundle.js"></script>
 <script>
@@ -65,12 +63,8 @@
     mode: 'gfm',
     lineNumbers: true,
     lineWrapping: true,
-    inputStyle: "contenteditable",
-    styleActiveLine: true,
-    showCursorWhenSelecting: true,
     matchBrackets: true,
-    autoCloseBrackets: true,
-    theme: "default",
+    theme: "default"
   });
   $(document).ready(function(){
     update_view();
@@ -87,14 +81,14 @@
       contentType: 'application/json',
     });
   });
-  $('#code').everyTime('60000', function(){
-    $.ajax({
-      type: 'POST',
-      data: JSON.stringify({"data": $('#code').val(), "file": "#title#"}),
-      url: '/save',
-      contentType: 'application/json',
-    });
-  });
+  setInterval(function(){
+      $.ajax({
+        type: 'POST',
+        data: JSON.stringify({"data": $('#code').val(), "file": "<%- title %>"}),
+        url: '/save',
+        contentType: 'application/json',
+      });
+  }, 30000);
 </script>
-  </body>
+</body>
 </html>
