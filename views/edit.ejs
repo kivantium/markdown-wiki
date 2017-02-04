@@ -67,13 +67,20 @@
     matchBrackets: true,
     theme: "default"
   });
+
   $(document).ready(function(){
     update_view();
   });
+
+  var timeoutId;
   editor.on("change", function(cMirror) {
     cMirror.save();
-    update_view();
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(function() {
+        update_view();
+      }, 1000);
   });
+
   $('#send').on("click", function() {
     $.ajax({
       type: 'POST',
@@ -82,6 +89,7 @@
       contentType: 'application/json',
     });
   });
+
   setInterval(function(){
       $.ajax({
         type: 'POST',

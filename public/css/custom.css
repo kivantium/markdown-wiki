@@ -5,8 +5,6 @@
   color: #fff;
 }
 
-
-
 .mdl-layout__header-row .header-nav {
   margin-left: 24px;
 }
@@ -50,6 +48,7 @@
 
 .markdown-body p {
   font-size: 16px;
+  line-height: 1.5;
 }
 .markdown-body dl dt {
   padding: 0;
@@ -63,6 +62,9 @@
 .markdown-body ol {
   font-size: 16px;
 }
+.markdown-body li {
+  margin-bottom: 4px;
+}
 
 .markdown-body pre {
   padding: 16px;
@@ -73,7 +75,20 @@
   border-radius: 3px;
   border: 1px solid #aaa;
 }
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: #555;
+  border-left: 0.25em solid #ddd;
+}
 
+blockquote::before {
+    left: 0em;
+    content: "";
+}
+blockquote::after {
+    content: "";
+    margin-left: 0em;
+}
 .katex {
   margin-left: 2px;
   margin-right: 2px;
