@@ -53,7 +53,7 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 app.use(session({
-    secret: 'keyboard alice',
+    secret: jsonConfig.sessionSecret,
     resave: true,
     saveUninitialized: true
 }));

@@ -1,0 +1,6 @@
+{
+    "consumerKey":"XXXXXXXXXXXXXXXXXXXXXXXX",
+    "consumerSecret":"XXXXXXXXXXXXXXXXXXXXx", 
+    "callbackURL":"https://your.domain.name/login/twitter/callback"
+    "sessionSecret":"XXXXXXXXXXX"
+}
