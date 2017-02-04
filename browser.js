@@ -16,8 +16,11 @@ md.use(require('markdown-it-katex'));
 md.use(require('markdown-it-deflist'));
 
 var input = document.getElementById('code'),
-	output = document.getElementById('output');
+	preview = document.getElementById('preview');
 global.update_view = function() {
 	var result = md.render(input.value);
-	out.innerHTML = result;
+	preview.innerHTML = result;
+};
+global.md_render = function(content) {
+	return md.render(content);
 };

@@ -89,51 +89,24 @@ blockquote::after {
     content: "";
     margin-left: 0em;
 }
+
 .katex {
   margin-left: 2px;
   margin-right: 2px;
 }
 
-#code {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: auto;
-  height: auto;
-  min-height: 100px;
-  background-color: #eee;
-}
-.CodeMirror {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: auto;
-  height: auto;
-  font-family: monospace;
-  letter-spacing: 0.025em;
-  line-height: 1.25;
-  font-size: 18px;
-  height: auto !important;
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch;
-background-color: #eee;
-}
 
 @media (max-width: 991px) {
   #in {
     position: fixed;
-    top: 80px;
+    top: 64px;
     left: 0;
     right: 0;
     height: 300px;
     width: 100%;
     overflow: auto;
   }
-  #out {
+  #preview {
     position: fixed;
     top: 380px;
     left: 0;
@@ -143,23 +116,50 @@ background-color: #eee;
     padding: 20px;
   }
 }
+
 @media (min-width: 992px) {
   #in {
     position: fixed;
-    top: 80px;
+    top: 65px;
     left: 0;
     bottom: 0;
-    width: 50%;
-    height: auto;
-    overflow: auto;
+    float: left;
+    width: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
-  #out {
+  #preview {
     position: fixed;
-    top: 80px;
+    top: 65px;
     right: 0;
     left: 50%;
     bottom: 0;
-    overflow: auto;
     padding: 20px;
+    float: left;
+    width: 100vh;
+    height: 100vh;
+    overflow: auto;
   }
+}
+#code {
+  margin: 0;
+  padding: 0;
+  width: 100vh;
+  height: 100vh;
+  background-color: #eee;
+  overflow-y: hidden;
+}
+.CodeMirror {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: monospace;
+  background-color: #eee;
+  font-size: 18px;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
 }

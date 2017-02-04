@@ -16,9 +16,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/codemirror.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/mode/overlay.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/edit/matchbrackets.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/mode/markdown/markdown.min.js"></script>    
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/mode/gfm/gfm.min.js"></script>    
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/edit/continuelist.min.js"></script>    
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/edit/matchbrackets.min.js"></script>
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
@@ -55,18 +56,22 @@
     <textarea id="code"><%- main %></textarea>
   </form>
 </div>
-<div id="out" class="markdown-body"></div>
+<div id="preview" class="markdown-body"></div>
 </main>
 </div>
 <script src="/bundle.js"></script>
 <script>
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: 'gfm',
+    theme: "default",
     lineNumbers: true,
     lineWrapping: true,
     matchBrackets: true,
-    theme: "default"
+    extraKeys: {
+        "Enter": "newlineAndIndentContinueMarkdownList"
+    }
   });
+editor.setSize("100%", "100%");
 
   $(document).ready(function(){
     update_view();
@@ -74,11 +79,25 @@
 
   var timeoutId;
   editor.on("change", function(cMirror) {
-    cMirror.save();
       clearTimeout(timeoutId);
       timeoutId = setTimeout(function() {
+        cMirror.save();
         update_view();
-      }, 1000);
+      }, 200);
+  });
+
+  var preview = document.getElementById("preview");
+  editor.on("scroll" , function(e){
+      var scrollInfo = e.getScrollInfo();
+      var lineNumber = e.lineAtHeight(scrollInfo.top, 'local');
+      var range = e.getRange({line: 0, ch: null}, {line: lineNumber, ch: null});
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(md_render(range), 'text/html');
+      var totalLines = doc.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
+      var elems = preview.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
+      if (elems.length > 0) {
+          preview.scrollTop = elems[totalLines.length].offsetTop;
+      }
   });
 
   $('#send').on("click", function() {
