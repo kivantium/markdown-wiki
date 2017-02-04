@@ -34,7 +34,7 @@
     </nav>
     <div class="mdl-layout-spacer"></div>
     <nav class="mdl-navigation header-nav">
-      <a id="send" class="mdl-navigation__link" href="/<%- link %>">Save</a>
+      <a id="send" class="mdl-navigation__link" href="/<%- link %>" onclick="location.reload()">Save</a>
     </nav>
   </div>
 </header>
@@ -71,7 +71,7 @@
         "Enter": "newlineAndIndentContinueMarkdownList"
     }
   });
-editor.setSize("100%", "100%");
+  editor.setSize("100%", "100%");
 
   $(document).ready(function(){
     update_view();

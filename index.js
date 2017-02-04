@@ -111,7 +111,7 @@ app.get('/edit/:entry', function(req, res){
         username = req.user.username;
         profile_image = req.user.photos[0].value;
     }
-    //if(req.user && req.user.username == 'kivantium') {
+    if(req.user && req.user.username == 'kivantium') {
         var filename = req.params.entry;
         fs.readFile(path.join(__dirname, 'md/'+filename+'.md'), 'utf8', function (err, data) {
             if (err) {
@@ -126,9 +126,9 @@ app.get('/edit/:entry', function(req, res){
                                          profile_image: profile_image});
             }
         });
-/*    } else {
+    } else {
         res.redirect('/');
-    }*/
+    }
 });
 
 app.get('/login/twitter',
