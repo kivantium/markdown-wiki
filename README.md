@@ -1,6 +1,11 @@
 # markdown-doc
+A markdown-based Wiki for mathematics
 
-To be used in https://kivantium.net/
+Running at https://kivantium.net/
+
+## Features
+- Online editing by GitHub flavored markdown
+- Fast math typesetting by KaTeX
 
 ## Install
 ```
@@ -25,16 +30,12 @@ server {
 server {
     listen       443 ssl;
     server_name  localhost;
-
-    #charset koi8-r;
-    #access_log  /var/log/nginx/log/host.access.log  main;
     
     ssl_certificate /etc/letsencrypt/live/your.domain/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your.domain/privkey.pem;
 
     location / {
-
-    proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
