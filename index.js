@@ -28,8 +28,8 @@ var md = require('markdown-it')({
     }
     return ''; // use external default escaping
   }
-});
-md.use(require('markdown-it-katex'));
+}).use(require('markdown-it-mathjax')());
+//md.use(require('markdown-it-katex'));
 md.use(require('markdown-it-title'));
 md.use(require('markdown-it-deflist'));
 

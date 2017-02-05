@@ -17,6 +17,7 @@
     "markdown-it": "^8.2.2",
     "markdown-it-deflist": "^2.0.1",
     "markdown-it-katex": "^2.0.3",
+    "markdown-it-mathjax": "^2.0.0",
     "markdown-it-title": "^1.0.4",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4"

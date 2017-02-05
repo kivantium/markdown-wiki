@@ -5,7 +5,7 @@ Running at https://kivantium.net/
 
 ## Features
 - Online editing by GitHub flavored markdown
-- Fast math typesetting by KaTeX
+- Fast math typesetting by MathJax
 
 ## Install
 ```
