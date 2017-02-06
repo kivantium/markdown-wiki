@@ -81,6 +81,8 @@
   border-left: 0.25em solid #ddd;
 }
 .markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
   display: block;
   width: 100%;
   overflow: auto;
@@ -147,6 +149,8 @@ blockquote::after {
     left: 0;
     bottom: 0;
     float: left;
+    font-size: 18px;
+    width: 50%;
     overflow: hidden;
   }
   #preview {

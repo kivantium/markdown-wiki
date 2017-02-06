@@ -77,6 +77,7 @@
     update_view();
   });
 
+  var preview = document.getElementById("preview");
   var timeoutId;
   editor.on("change", function(cMirror) {
       clearTimeout(timeoutId);
@@ -86,16 +87,18 @@
       }, 200);
   });
 
-  var preview = document.getElementById("preview");
   editor.on("scroll" , function(e){
       var scrollInfo = e.getScrollInfo();
       var lineNumber = e.lineAtHeight(scrollInfo.top, 'local');
+      var lineHeight = e.lineAtHeight(scrollInfo.height, 'local');
       var range = e.getRange({line: 0, ch: null}, {line: lineNumber, ch: null});
       var parser = new DOMParser();
       var doc = parser.parseFromString(md_render(range), 'text/html');
       var totalLines = doc.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
       var elems = preview.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
-      if (elems.length > 0) {
+      if(lineNumber > lineHeight - 30) {
+          preview.scrollTop = elems[elems.length-1].offsetTop;
+      } else if (elems.length > 0) {
           preview.scrollTop = elems[totalLines.length].offsetTop;
       }
   });
