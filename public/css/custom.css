@@ -80,7 +80,30 @@
   color: #555;
   border-left: 0.25em solid #ddd;
 }
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
 
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
 blockquote::before {
     left: 0em;
     content: "";
@@ -124,8 +147,6 @@ blockquote::after {
     left: 0;
     bottom: 0;
     float: left;
-    width: 100vh;
-    height: 100vh;
     overflow: hidden;
   }
   #preview {
@@ -136,16 +157,12 @@ blockquote::after {
     bottom: 0;
     padding: 20px;
     float: left;
-    width: 100vh;
-    height: 100vh;
     overflow: auto;
   }
 }
 #code {
   margin: 0;
   padding: 0;
-  width: 100vh;
-  height: 100vh;
   background-color: #eee;
   overflow-y: hidden;
 }
