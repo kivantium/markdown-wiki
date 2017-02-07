@@ -66,14 +66,57 @@
   margin-bottom: 4px;
 }
 
-.markdown-body pre {
-  padding: 16px;
-  font-size: 95%;
-  overflow: auto;
-  line-height: 1.5;
-  background-color: #fcfcfc;
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
-  border: 1px solid #aaa;
+}
+
+.markdown-body code::before,
+.markdown-body code::after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+  
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code::before,
+.markdown-body pre code::after {
+  content: normal;
 }
 .markdown-body blockquote {
   padding: 0 1em;
@@ -84,6 +127,8 @@
   display: block;
   width: 100%;
   overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 .markdown-body table th {
@@ -148,6 +193,8 @@ blockquote::after {
     bottom: 0;
     float: left;
     overflow: hidden;
+    width: 100vh;
+    font-size: 18px;
   }
   #preview {
     position: fixed;
