@@ -81,6 +81,37 @@ app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
 });
 
+app.get('/secret/:entry', function(req, res){
+    var profile_image;
+    if(req.user) {
+        username = req.user.username;
+        profile_image = req.user.photos[0].value;
+    }
+    var filename = req.params.entry;
+    if(req.user && req.user.username == 'kivantium') {
+        fs.readFile(path.join(__dirname, 'md/secret/'+filename+'.md'), 'utf8', function (err, data) {
+            if (err) {
+                res.render('template.ejs', { title: 'Page Not Found', 
+                                             main: 'Page Not Found.', 
+                                             link: filename,
+                                             profile_image: profile_image});
+            } else {
+                const env = {};
+                var article = md.render(data, env);
+                res.render('template.ejs', { title: env.title,
+                                             main: article,
+                                             link: filename,
+                                             profile_image: profile_image});
+            }
+        });
+    } else {
+        res.render('template.ejs', { title: '403 Forbidden', 
+                                     main: '403 Forbidden', 
+                                     link: filename,
+                                     profile_image: profile_image});
+    }
+});
+
 app.get('/:entry', function(req, res){
     var profile_image;
     if(req.user) {

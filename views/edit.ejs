@@ -111,15 +111,6 @@
       contentType: 'application/json',
     });
   });
-
-  setInterval(function(){
-      $.ajax({
-        type: 'POST',
-        data: JSON.stringify({"data": $('#code').val(), "file": "<%- title %>"}),
-        url: '/save',
-        contentType: 'application/json',
-      });
-  }, 30000);
 </script>
 </body>
 </html>
