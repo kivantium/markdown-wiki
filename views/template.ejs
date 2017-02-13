@@ -35,11 +35,7 @@
           <a id="send" href="/edit/<%- link %>">Edit this page</a>
         </li>
       </ul>
-    <% } else { %>
-    <nav class="mdl-navigation mdl-layout--large-screen-only">
-      <a class="mdl-navigation__link" href="/login/twitter">Login</a>
-    </nav>
-    <% } %>
+    <% }
   </div>
 </header>
 <div class="mdl-layout__drawer">
@@ -49,9 +45,6 @@
     <a class="mdl-navigation__link" href="/docs">Documents</a>
     <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
     <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
-    <% if(!profile_image) { %>
-      <a class="mdl-navigation__link" href="/login/twitter">Login</a>
-    <% } %>
   </nav>
 </div>
 <main class="mdl-layout__content">
