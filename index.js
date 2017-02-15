@@ -19,17 +19,10 @@ var hljs = require('highlight.js')
 var md = require('markdown-it')({
   html:         true,        // Enable HTML tags in source
   breaks:       true,        // Convert '\n' in paragraphs into <br>
-  linkify:      true,        // Autoconvert URL-like text to links
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {}
-    }
-    return ''; // use external default escaping
-  }
+  linkify:      true        // Autoconvert URL-like text to links
 }).use(require('markdown-it-mathjax')());
 //md.use(require('markdown-it-katex'));
+md.use(require('markdown-it-highlightjs'));
 md.use(require('markdown-it-title'));
 md.use(require('markdown-it-deflist'));
 

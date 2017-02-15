@@ -67,61 +67,31 @@
 }
 
 .markdown-body code {
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
   margin: 0;
-  background-color: rgba(0,0,0,0.04);
+  padding: 0.2em 0.5em;
+  background-color: #fafafa;
   border-radius: 3px;
-}
-
-.markdown-body code::before,
-.markdown-body code::after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
 }
 
 .markdown-body pre {
-  word-wrap: normal;
-  padding: 16px;
+  font-size: 14px;
   overflow: auto;
-  font-size: 90%;
-  line-height: 1.45;
-  background-color: #f7f7f7;
-  border-radius: 3px;
-}
-  
-.markdown-body pre>code {
-  padding: 0;
-  margin: 0;
-  font-size: 100%;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
+  line-height: 1.5;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
 }
 
-.markdown-body pre code {
-  display: inline;
-  max-width: auto;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
+.markdown-body pre>code{
+  margin: 14px;
   background-color: transparent;
-  border: 0;
 }
 
-.markdown-body pre code::before,
-.markdown-body pre code::after {
-  content: normal;
-}
 .markdown-body blockquote {
   padding: 0 1em;
   color: #555;
   border-left: 0.25em solid #ddd;
 }
+
 .markdown-body table {
   border-spacing: 0;
   border-collapse: collapse;
