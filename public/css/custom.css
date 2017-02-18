@@ -24,6 +24,7 @@
   padding: 45px;
   font-size: 16px;
   line-height: 1.6;
+  font-family : arial, Meiryo, メイリオ, sans-serif;
 }
 .markdown-body h1 {
   padding-bottom: 0.2em;
@@ -54,6 +55,7 @@
   padding: 0;
   margin-top: 16px;
   font-weight: bold;
+  font-style: normal;
 }
 
 .markdown-body ul {
@@ -66,65 +68,11 @@
   margin-bottom: 4px;
 }
 
-.markdown-body code {
-  margin: 0;
-  padding: 0.2em 0.5em;
-  background-color: #fafafa;
-  border-radius: 3px;
-}
-
-.markdown-body pre {
-  font-size: 14px;
-  overflow: auto;
-  line-height: 1.5;
-  background-color: #fafafa;
-  border: 1px solid #ccc;
-}
-
-.markdown-body pre>code{
-  margin: 14px;
-  background-color: transparent;
-}
-
-.markdown-body blockquote {
-  padding: 0 1em;
-  color: #555;
-  border-left: 0.25em solid #ddd;
-}
-
-.markdown-body table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  display: block;
-  width: 100%;
-  overflow: auto;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-.markdown-body table th {
-  font-weight: bold;
-}
-
-.markdown-body table th,
-.markdown-body table td {
-  padding: 6px 13px;
-  border: 1px solid #ddd;
-}
-
-.markdown-body table tr {
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-}
-
-.markdown-body table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-blockquote::before {
+.markdown-body blockquote::before {
     left: 0em;
     content: "";
 }
-blockquote::after {
+.markdown-body blockquote::after {
     content: "";
     margin-left: 0em;
 }
