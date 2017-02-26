@@ -5,11 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%- title %></title>
+<link rel="icon" type="image/png" href="/favicon.png">
 <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="//code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 <script defer src="//code.getmdl.io/1.3.0/material.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/googlecode.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/codemirror.min.css">
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -22,8 +24,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/addon/edit/matchbrackets.min.js"></script>
 </head>
 <body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
-<header class="mdl-layout__header">
+<div class="mdl-layout mdl-js-layout mdl-layout--no-desktop-drawer-button">
+<header class="mdl-layout__header mdl-layout__header--scroll">
   <div class="mdl-layout__header-row">
     <span class="mdl-layout-title"><a href="/">kivantium.net</a></span>
     <nav class="mdl-navigation mdl-layout--large-screen-only header-nav">
@@ -33,9 +35,13 @@
       <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
     </nav>
     <div class="mdl-layout-spacer"></div>
-    <nav class="mdl-navigation header-nav">
-      <a id="send" class="mdl-navigation__link" href="/<%- link %>">Save</a>
-    </nav>
+    <% if(profile_image) { %>
+      <button id="usermenu" style="background: url(<%- profile_image %>) center no-repeat; background-size: 100% 100%;" class="mdl-button mdl-js-button mdl-button--icon">
+        <span class="material-icons" ></span>
+      </button>
+      <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="usermenu">
+      </ul>
+      <% } %>
   </div>
 </header>
 <div class="mdl-layout__drawer">
@@ -49,11 +55,24 @@
 </div>
 <main class="mdl-layout__content">
 <div id="in">
-  <form id="form" action="/save" method="post">
-    <textarea id="code"><%- main %></textarea>
+  <form id="form" action="/post" method="post">
+    <div class="mdl-textfield mdl-js-textfield" style="margin-left: 15px; width: 50%">
+      <input class="mdl-textfield__input" type="text" name="entry" <% if(entry) { %>value="<%- entry %>"<% } %>>
+      <label class="mdl-textfield__label" for="entry">Entry Name</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield" style="margin-left: 15px; width: 40%">
+      <input class="mdl-textfield__input" type="text" name="category" <% if(category) { %>value="<%- category %>"<% } %>>
+      <label class="mdl-textfield__label" for="category">Category</label>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin: 15px;">Save</button>
+    <div id="editorBody">
+      <div id="editorMarkdown">
+        <textarea id="code" name="markdown"><%- main %></textarea>
+      </div>
+      <div id="preview" class="markdown-body"></div>
+    </div>
   </form>
 </div>
-<div id="preview" class="markdown-body"></div>
 </main>
 </div>
 <script src="/bundle.js"></script>
@@ -68,7 +87,6 @@
         "Enter": "newlineAndIndentContinueMarkdownList"
     }
   });
-  editor.setSize("100%", "100%");
 
   $(document).ready(function(){
     update_view();
@@ -98,15 +116,6 @@
       } else if (elems.length > 0) {
           preview.scrollTop = elems[totalLines.length].offsetTop;
       }
-  });
-
-  $('#send').on("click", function() {
-    $.ajax({
-      type: 'POST',
-      data: JSON.stringify({"data": $('#code').val(), "file": "<%- title %>"}),
-      url: '/save',
-      contentType: 'application/json',
-    });
   });
 </script>
 </body>

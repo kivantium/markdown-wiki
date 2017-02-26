@@ -82,64 +82,37 @@
   margin-right: 2px;
 }
 
-
-@media (max-width: 991px) {
-  #in {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
-    height: 300px;
-    width: 100%;
-    overflow: auto;
-  }
-  #preview {
-    position: fixed;
-    top: 380px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-    padding: 20px;
-  }
+#editorBody {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
-
-@media (min-width: 992px) {
-  #in {
-    position: fixed;
-    top: 65px;
-    left: 0;
-    bottom: 0;
-    float: left;
-    font-size: 18px;
-    width: 50%;
-    overflow: hidden;
-    width: 100vh;
-    font-size: 18px;
-  }
-  #preview {
-    position: fixed;
-    top: 65px;
-    right: 0;
-    left: 50%;
-    bottom: 0;
-    padding: 20px;
-    float: left;
-    overflow: auto;
-  }
+#editorMarkdown {
+  position: absolute;
+  top: 0px;
+  right: 50%;
+  left: 0;
+  bottom: 0;
 }
 #code {
-  margin: 0;
-  padding: 0;
-  background-color: #eee;
-  overflow-y: hidden;
+  width: 100%;
+  height: 100%;
 }
-.CodeMirror {
+#preview {
+  padding-top: 10px;
   position: absolute;
   top: 0;
-  left: 0;
+  left:50%;
   right: 0;
   bottom: 0;
+}
+#editorFooter {
+}
+.CodeMirror {
+  width: 100%;
+  height: 100%;
   font-family: monospace;
   background-color: #eee;
   font-size: 18px;
