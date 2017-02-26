@@ -25,6 +25,7 @@ var md = require('markdown-it')({
 md.use(require('markdown-it-katex'));
 md.use(require('markdown-it-highlightjs'));
 md.use(require('markdown-it-title'));
+md.use(require('markdown-it-deflist'));
 
 // passport configuration
 var config = fs.readFileSync("config.json");
