@@ -67,19 +67,21 @@ var openArticle = function(req, res, entry) {
     MongoClient.connect(db_url, function(err, db) {
         db.collection('article').findOne({'entry': entry}, function(err, data) {
             if(data) {
-                var update_at = dateformat(data["update_at"], 'yyyy年mm月dd日 HH時MM分');
+                var update_at = dateformat(data["update_at"], 'yyyy-mm-dd HH:MM');
                 res.render('template.ejs', { 
                     entry: entry,
                     title: data["title"],
+                    category: data["category"],
                     update_at: update_at,
                     main: data["html"],
                     profile_image: profile_image
                 });
             } else {
-                var update_at = dateformat(Date(), 'yyyy年mm月dd日 HH時MM分');
+                var update_at = dateformat(Date(), 'yyyy-mm-dd日 HH:MM');
                 res.render('template.ejs', { 
                     entry: entry,
                     title: '404 Not Found',
+                    category: "index",
                     update_at: update_at,
                     main: '404 Not Found',
                     profile_image: profile_image
@@ -157,7 +159,7 @@ app.post('/post',function(req,res){
         db.collection('article').updateOne(
             {entry: req.body.entry},
             {$set: {"update_at": new Date(),
-                    "title": env.title,
+                    "title": req.body.title,
                     "category": req.body.category,
                     "markdown": req.body.markdown,
                     "html": html,

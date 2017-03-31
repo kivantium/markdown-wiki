@@ -22,6 +22,7 @@
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
+  padding-top: 0px;
   font-size: 16px;
   line-height: 1.6;
   font-family : arial, Meiryo, メイリオ, sans-serif;
@@ -31,6 +32,11 @@
   font-size: 2.0em;
   line-height: 1.25;
   border-bottom: 1px solid #aaa;
+}
+.markdown-body #main_title {
+  border-top: 5px solid #aaa;
+  border-bottom: 5px solid #aaa;
+  padding: .5em;
 }
 .markdown-body h2 {
   font-size: 1.5em;
@@ -77,6 +83,20 @@
     margin-left: 0em;
 }
 
+.markdown-body .breadcrumb{
+  background-color: white;
+  padding-left: 0;
+}
+.markdown-body .breadcrumb > li + li:before {
+  content: ">";
+}
+
+.navbar-default .navbar-brand:hover {
+    background-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #e7e7e7;
+}
 .katex {
   margin-left: 2px;
   margin-right: 2px;
