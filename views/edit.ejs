@@ -31,6 +31,7 @@
     <nav class="mdl-navigation mdl-layout--large-screen-only header-nav">
       <a class="mdl-navigation__link" href="/about">About</a>
       <a class="mdl-navigation__link" href="/docs">Documents</a>
+      <a class="mdl-navigation__link" href="/publications">Publications</a>
       <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
       <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
     </nav>
@@ -49,6 +50,7 @@
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="/about">About</a>
     <a class="mdl-navigation__link" href="/docs">Documents</a>
+    <a class="mdl-navigation__link" href="/publications">Publications</a>
     <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
     <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
   </nav>
@@ -84,7 +86,36 @@
     lineWrapping: true,
     matchBrackets: true,
     extraKeys: {
-        "Enter": "newlineAndIndentContinueMarkdownList"
+        "Enter": "newlineAndIndentContinueMarkdownList",
+        "Tab": function (cm) {
+            var tab = '\t';
+            var spaces = Array(parseInt(cm.getOption("indentUnit")) + 1).join(" ");
+            //auto indent whole line when in list or blockquote
+            var cursor = cm.getCursor();
+            var line = cm.getLine(cursor.line);
+            var regex = /^(\s*)(>[> ]*|[*+-]\s|(\d+)([.)]))/;
+            var match;
+            var multiple = cm.getSelection().split('\n').length > 1 || cm.getSelections().length > 1;
+            if (multiple) {
+                cm.execCommand('defaultTab');
+            } else if ((match = regex.exec(line)) !== null) {
+                var ch = match[1].length;
+                var pos = {
+                    line: cursor.line,
+                    ch: ch
+                };
+                if (cm.getOption('indentWithTabs'))
+                    cm.replaceRange(tab, pos, pos, '+input');
+                else
+                    cm.replaceRange(spaces, pos, pos, '+input');
+            } else {
+                if (cm.getOption('indentWithTabs'))
+                    cm.execCommand('defaultTab');
+                else {
+                    cm.replaceSelection(spaces);
+                }
+            }
+        },
     }
   });
 
@@ -99,7 +130,7 @@
       timeoutId = setTimeout(function() {
         cMirror.save();
         update_view();
-      }, 200);
+      }, 800);
   });
 
   editor.on("scroll" , function(e){
@@ -109,8 +140,8 @@
       var range = e.getRange({line: 0, ch: null}, {line: lineNumber, ch: null});
       var parser = new DOMParser();
       var doc = parser.parseFromString(md_render(range), 'text/html');
-      var totalLines = doc.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
-      var elems = preview.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table');
+      var totalLines = doc.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table, dt, dd');
+      var elems = preview.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, pre, blockquote, hr, table, dt, dd');
       if(lineNumber > lineHeight - 30) {
           preview.scrollTop = elems[elems.length-1].offsetTop;
       } else if (elems.length > 0) {

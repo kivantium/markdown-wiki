@@ -56,7 +56,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // miscellaneous configuration
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ limit:'50mb', extended: false }));
 app.use(bodyParser.json());
 
 var db_url = 'mongodb://localhost:27017/wiki';

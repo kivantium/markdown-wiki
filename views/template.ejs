@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="<%- title %> | kivantium.net" />
+<meta name="twitter:description" content="Something useful" />
 <title><%- title %></title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,6 +26,7 @@
     <nav class="mdl-navigation mdl-layout--large-screen-only header-nav">
       <a class="mdl-navigation__link" href="/about">About</a>
       <a class="mdl-navigation__link" href="/docs">Documents</a>
+      <a class="mdl-navigation__link" href="/publications">Publications</a>
       <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
       <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
     </nav>
@@ -53,15 +57,16 @@
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="/about">About</a>
     <a class="mdl-navigation__link" href="/docs">Documents</a>
+    <a class="mdl-navigation__link" href="/publications">Publications</a>
     <a class="mdl-navigation__link" href="http://kivantium.hateblo.jp/">Blog</a>
     <a class="mdl-navigation__link" href="https://twitter.com/kivantium">Twitter</a>
   </nav>
 </div>
 <main class="mdl-layout__content">
-<p style="margin-right: 40px" align="right">最終更新: <%- update_at %></p>
 <div class="markdown-body">
 <%- main %>
 </div>
+<p style="margin-right: 40px" align="right">最終更新: <%- update_at %></p>
 </main>
 </div>
 </body>
