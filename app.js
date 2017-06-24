@@ -142,13 +142,14 @@ app.get('/edit/:entry', function(req, res){
         var profile_image;
         if(req.user) profile_image = req.user.photos[0].value;
         var update_at = dateformat(Date(), 'yyyy年mm月dd日 HH時MM分');
-        res.render('template.ejs', { 
-            entry: 'error',
-            title: '403 Forbidden',
-            update_at: update_at,
-            main: '403 Forbidden',
-            profile_image: profile_image
-        });
+	res.render('template.ejs', { 
+	    entry: '',
+	    title: '403 Forbidden',
+	    category: "index",
+	    update_at: update_at,
+	    main: '403 Forbidden',
+	    profile_image: profile_image
+	});
     }
 });
 
